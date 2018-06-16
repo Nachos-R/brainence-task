@@ -5,8 +5,13 @@ export default (state = showReducerDefaultState, action) => {
         case 'SHOW_ALBUMS':
             return {
                 ...state,
-                display: action.display
+                displayAlbums: action.display
             };
+        case 'SHOW_PHOTOS':
+            return {
+                ...state,
+                displayPhotos: action.display
+            }
         default:
             return state;
     }

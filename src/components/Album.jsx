@@ -1,58 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Photo from './Photo';
-import { getPhotos } from '../actions/get';
-import { selectRandomPhoto } from '../actions/select';
-import { showAlbums } from '../actions/show';
+
+import {savePhotos, clearPhotos } from '../actions/photos';
+import { saveRandPhotos } from '../actions/randPhotos';
 
 class Album extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            display: false
-        };
         this.handleClick = this.handleClick.bind(this);
-    }
-    
+    }    
     
     componentDidMount() {
         if(this.props.id){
             const albumId = this.props.id;
-    
+            this.props.dispatch(clearPhotos());
             fetch(`https://jsonplaceholder.typicode.com/photos`)
             .then(response => response.json())
             .then(data => {
-                const photoList = data.filter(photo => photo.albumId === albumId)
-                this.props.dispatch(getPhotos(photoList));
+                const photoList = data.filter(photo => photo.albumId === albumId);
                 const randomPhoto = photoList[Math.floor(Math.random() * photoList.length)];
-                this.props.dispatch(selectRandomPhoto(randomPhoto));
-                this.props.dispatch(showAlbums(false));
-                console.log(randomPhoto);
+                this.props.dispatch(savePhotos(photoList, albumId));
+                this.props.dispatch(saveRandPhotos(randomPhoto.thumbnailUrl));
+                console.log('get photos---------------------------------------')
+                console.log(this.props.photos);
             });
         }
     }
 
     handleClick = () => {
         this.props.onClick(this.props.id, this.props.title);
-        this.props.dispatch(showAlbums(true));
     }
 
     render(){
         return (
-            <div onClick={this.handleClick}>
-            <h1>{this.props.title}</h1>
-                {this.props.showData.display && (this.props.getData.photos ? this.props.getData.photos.map(photo => (                    
-                    <Photo key={photo.id} {...photo}/>
-                )) : false)}
+            <div className="album-wrapper" style={this.props.style}>
+                <h1>{this.props.title}</h1>
+                <div className="album" onClick={this.handleClick}></div>
+                <img src={this.props.url} alt="img" />
             </div>
         );
     }
-    
 }
 
 const mapStateToProps = (state) => ({
-    getData: state.getData,
-    showData: state.showData
+    showData: state.showData,
+    photos: state.photos,
+    randPhotos: state.randPhotos
 });
 
 

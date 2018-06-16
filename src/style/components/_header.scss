@@ -1,0 +1,27 @@
+header{
+    background-color: $light-grey;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: lighter;
+    border-bottom: 2px solid $grey;
+}
+.logo, .logout, .username, .title{
+    display: inline-block;
+    font-size: $l-size;
+    padding: 10px 0;
+    font-weight: bolder;
+}
+.title{
+    font-size: $m-size;
+}
+.logout{
+    padding: 10px 30px;
+    font-size: $m-size;
+}
+.logo{
+    padding-left: 30px; 
+    width: 200px;
+    border-right: 2px solid $grey;
+    box-sizing: border-box;
+}

@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getTitle } from '../actions/get';
 import { isLogged } from '../actions/login';
+import { showAlbums } from '../actions/show';
+import { saveRandPhotos } from '../actions/randPhotos';
 
 const Header = (props) => (
   <header>
-    <p>LOGO</p>
-    {props && <h1>Hi, {props.getData.title}</h1>}
-    <Link to="/login" onClick={() => {
-      props.dispatch(getTitle({}));
+    <h1 className="logo">LOGO :)</h1>
+    {props && props.getData.title ?  
+      <h2 className="title">{props.getData.title}</h2> : 
+      <h1 className="username">Hi {props.getData.username}</h1>}
+    <Link className="logout" to="/login" onClick={() => {
+      props.dispatch(getTitle(''));
       props.dispatch(isLogged(false));
+      props.dispatch(showAlbums(false));
+      props.dispatch(saveRandPhotos(''));
     }}>Logout</Link>
   </header>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Menu = () => (
-    <div>
+    <div className="menu">
         <p>Just</p>
         <p>Random</p>
         <p>Static</p>

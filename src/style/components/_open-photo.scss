@@ -1,0 +1,32 @@
+.ReactModalPortal>div{
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay{
+    transition: opacity 200ms ease-in-out;
+    z-index: 10;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close{
+    opacity: 1;
+}
+
+.open-photo{
+    color:white;
+    outline: none;
+    padding: $l-size;
+    text-align: center;
+    z-index: 10;
+}
+
+.modal-button{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    margin-left: -35px;
+    margin-top: -15px;
+    font-size: 34px;
+    color: $grey;
+}

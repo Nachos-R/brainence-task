@@ -1,0 +1,35 @@
+.modal{
+    background-color: $light-grey;
+    height: 100vh;
+    padding: 50px 30%;
+    box-sizing: border-box;
+    .login-form{
+        border: 1px solid $grey;
+        background-color: $white;
+        border-radius: 5px;
+        padding: 20%;
+        font-size: $m-size;
+        text-align: center;
+        input{
+            height: 50px;
+            margin: 20px 0;
+            width: 100%;
+            font-size: $m-size;
+            border-radius: 5px;
+        };
+        button{
+            height: 50px;
+            border-radius: 5px;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: $desktop-breakpoint) {
+    .modal{
+        padding: 20px 15px;
+        .login-form{
+            padding: 50px 20px;
+        }
+    }
+}

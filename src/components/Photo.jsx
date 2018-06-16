@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const Photo = (props) => {
-    return (
-        <div>
-            <p>{props.title}</p>
-            {props.showData.display && <img src={props.url} alt="img" />}
-        </div>
-    );
+class Photo extends Component{
+    
+    openPhoto = (url) => {
+        this.props.onClick(url)
+    }
+    
+    render() {
+        return (
+            <div className="photo-wrapper" onClick={()=>(this.openPhoto(this.props.url))}>
+                <p>{this.props.title}</p>
+                <div className="photo"></div>
+                <img src={this.props.thumbnailUrl} alt="photo" />
+            </div>
+        );
+    }
 }
 
-const mapStateToProps = (state) => ({
-    showData: state.showData
-});
-
-export default connect(mapStateToProps)(Photo);
+export default connect()(Photo);

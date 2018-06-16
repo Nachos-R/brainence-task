@@ -6,28 +6,28 @@ import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
 import Menu from '../components/Menu';
 import Gallery from '../components/Gallery';
-import Album from '../components/Album';
-import Photo from '../components/Photo';
+import Photos from '../components/Photos';
 
 const AppRouter = (props) => (
   <BrowserRouter>
-    <div>
-    {
-      props.login.loggedIn ? (
-        <div>
-          <Header />
-          <Menu />
-        </div>
-      ) : <Redirect exact from="/" to="/login" />}
+    <React.Fragment>
+      {
+        props.login.loggedIn ? (
+          <React.Fragment>
+            <Header />
+            <Menu />
+          </React.Fragment>
+        ) : <Redirect exact from="/" to="/login" />
+      }
       
       <Switch>
         <Route path="/login" component={LoginPage} />        
         <Route path="/gallery/:id" component={Gallery} />
-        <Route path="/album/:id" component={Album} />
-        <Route path="/photo/:id" component={Photo} />
+        <Route path="/album/:id" component={Photos} />
+        <Route path="/photo/:id" component={Gallery} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </React.Fragment>
   </BrowserRouter>
 );
 
