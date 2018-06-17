@@ -10,7 +10,7 @@ import randPhotosReducer from '../reducers/randPhotos';
 export default () => {
   const store = createStore(
     combineReducers({
-      add: addReducer,
+      added: addReducer,
       select: selectReducer,
       login: loginReducer,
       getData: getDataReducer,

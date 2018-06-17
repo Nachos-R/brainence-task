@@ -1,5 +1,9 @@
-
-export const addPhoto = () => {
+export const addPhotos = (albumId, photos) => ({
     type: 'ADD_PHOTO',
-    id
-}
+    albumId,
+    photos
+});
+
+export const clearAddedPhoto = () => ({
+    type: 'CLEAR_ADDED_PHOTO'
+});

@@ -12,7 +12,7 @@ class Photo extends Component{
             <div className="photo-wrapper" onClick={()=>(this.openPhoto(this.props.url))}>
                 <p>{this.props.title}</p>
                 <div className="photo"></div>
-                <img src={this.props.thumbnailUrl} alt="photo" />
+                <img src={this.props.thumbnailUrl} alt="img"/>
             </div>
         );
     }
