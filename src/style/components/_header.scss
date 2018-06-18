@@ -1,10 +1,10 @@
 header{
     background-color: $light-grey;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     font-weight: lighter;
-    border-bottom: 2px solid $grey;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 30px;
 }
 .logo, .logout, .username, .title{
     display: inline-block;
@@ -12,8 +12,11 @@ header{
     padding: 10px 0;
     font-weight: bolder;
 }
-.title{
-    font-size: $m-size;
+.title, .username{
+    overflow: -webkit-paged-x;
+    width: 100%;
+    text-align: center;
+    padding-left: 200px;
 }
 .logout{
     padding: 10px 30px;
@@ -22,6 +25,23 @@ header{
 .logo{
     padding-left: 30px; 
     width: 200px;
-    border-right: 2px solid $grey;
+    border-bottom: 1px solid $grey;
     box-sizing: border-box;
+}
+
+@media (max-width: $desktop-breakpoint) {
+    header{
+        background-color: $white;
+        border: 1px solid $off-black;
+        margin-bottom: 5px;
+        max-height: 60px;
+        .logout{
+            padding: 0 20px;
+            line-height: 60px;
+            color: $red;
+        }
+    }
+    .title, .username{
+          padding-left: 10px;
+      }
 }

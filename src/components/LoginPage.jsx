@@ -10,7 +10,8 @@ Modal.setAppElement('#root');
 
 class LoginPage extends Component{
     state = {
-        id: ''
+        id: '',
+        error: ''
     };
 
     componentDidMount(){
@@ -27,14 +28,16 @@ class LoginPage extends Component{
         fetch(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
         .then(response => response.json())
         .then(result => {
-            console.log("user info ===================================================================");
-            console.log(result);
             if(result.id){
-                this.setState(()=>({ id: result.id }));
+                this.setState(()=>({ id: result.id, error: '' }));
                 this.props.dispatch(getUsername(result.username));  
                 this.props.dispatch(selectUser(result.id));  
                 this.props.dispatch(isLogged(true));
                 this.props.history.push(`/gallery/:${result.id}`);
+            } else {
+                this.setState(() => ({
+                    error: 'User does not exist'
+                }));
             }
         });
     };
@@ -49,6 +52,7 @@ class LoginPage extends Component{
                     <h2>Enter your id</h2>
                     <input value={this.state.id} onChange={this.onInputChange}/>
                     <button>Login</button>
+                    {this.state.error && <span>{this.state.error}</span>}
                 </form>
             </Modal>
         );

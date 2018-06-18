@@ -10,8 +10,6 @@ export default (state = addReducerDefaultState, action) => {
                    ...action.photos
                 ]
             };
-        case 'CLEAR_ADDED_PHOTO':
-            return [];
         default:
             return state;
     }

@@ -3,7 +3,3 @@ export const addPhotos = (albumId, photos) => ({
     albumId,
     photos
 });
-
-export const clearAddedPhoto = () => ({
-    type: 'CLEAR_ADDED_PHOTO'
-});

@@ -21,15 +21,20 @@
             height: 50px;
             border-radius: 5px;
             width: 100%;
+            margin-bottom: 10px;
+        };
+        span{
+            color: $red;
         }
     }
 }
 
 @media (max-width: $desktop-breakpoint) {
     .modal{
-        padding: 20px 15px;
+        padding: 0;
         .login-form{
             padding: 50px 20px;
+            height: 100%;
         }
     }
 }

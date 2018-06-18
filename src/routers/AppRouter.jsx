@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
-import Menu from '../components/Menu';
+import LeftPanel from '../components/LeftPanel';
 import Gallery from '../components/Gallery';
 import Photos from '../components/Photos';
 
@@ -14,8 +14,8 @@ const AppRouter = (props) => (
       {
         props.login.loggedIn ? (
           <React.Fragment>
+            <LeftPanel />
             <Header />
-            <Menu />
           </React.Fragment>
         ) : <Redirect exact from="/" to="/login" />
       }

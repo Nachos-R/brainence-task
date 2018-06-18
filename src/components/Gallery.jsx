@@ -9,11 +9,6 @@ import { clearRandPhotos } from '../actions/randPhotos';
 
 
 class Gallery extends Component{
-    constructor(props){
-        super(props);
-        this.openAlbum = this.openAlbum.bind(this);
-    }
-    
     componentDidMount(){    
         if(this.props.login.loggedIn && !this.props.showData.displayAlbums){
 
@@ -26,8 +21,6 @@ class Gallery extends Component{
                 this.props.dispatch(clearRandPhotos());
                 this.props.dispatch(getAlbums(albumList));
                 this.props.dispatch(showAlbums(true));
-                console.log('albums===================================================================');
-                console.log(this.props.getData.albums);
             });
         }
     }
@@ -41,13 +34,9 @@ class Gallery extends Component{
         this.props.history.push(`/album/:${id}`);
         this.props.dispatch(getTitle(title));
         this.props.dispatch(selectAlbum(id));
-        console.log('===============');
-        console.log(this.props.photos);
     }
 
     render() {
-        console.log('===============rand photos');
-        console.log(this.props.randPhotos);
         return (
             <div className="container">                
                 {this.props.showData.displayAlbums ? this.props.getData.albums.map((album, index) => (
@@ -63,7 +52,6 @@ const mapStateToProps = (state) => ({
     login: state.login,
     getData: state.getData,
     showData: state.showData,
-    photos: state.photos,
     randPhotos: state.randPhotos
 });
 

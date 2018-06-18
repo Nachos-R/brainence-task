@@ -8,10 +8,9 @@ import { saveRandPhotos } from '../actions/randPhotos';
 
 const Header = (props) => (
   <header>
-    <h1 className="logo">LOGO :)</h1>
     {props && props.getData.title ?  
-      <h2 className="title">{props.getData.title}</h2> : 
-      <h1 className="username">Hi {props.getData.username}</h1>}
+      <p className="title">{props.getData.title}</p> : 
+      <p className="username">Hi, {props.getData.username}</p>}
     <Link className="logout" to="/login" onClick={() => {
       props.dispatch(getTitle(''));
       props.dispatch(isLogged(false));
@@ -23,8 +22,7 @@ const Header = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    getData: state.getData,
-    login: state.login
+    getData: state.getData
   }
 }
 

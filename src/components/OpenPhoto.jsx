@@ -8,8 +8,10 @@ const OpenPhoto = (props) => {
             closeTimeoutMS={200}
             className="open-photo"
         >
-            <img src={props.url} alt="opened" />
-            <button className="modal-button" onClick={props.onClick}>X</button>
+            <div className="open-photo-wrapper">
+                <img src={props.url} alt="opened" />
+                <button className="modal-button" onClick={props.onClick}>X</button>
+            </div>
         </Modal>
     );
 }

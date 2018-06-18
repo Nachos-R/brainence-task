@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import Photo from './Photo';
 import OpenPhoto from './OpenPhoto';
 import { getTitle } from '../actions/get';
-import { addPhotos, clearAddedPhoto } from '../actions/add';
+import { addPhotos } from '../actions/add';
 
 
 class Photos extends Component{
     state = {
         isOpen: false,
-        photos: []
+        url: ''
     }
-
 
     componentDidMount(){
         try{
@@ -22,8 +21,6 @@ class Photos extends Component{
             
             if(photos[albumId]){
                 this.props.dispatch(addPhotos( albumId, photos[albumId] ));
-                console.log('componentDidMount');
-                console.log(photos);
             }
         } catch (e){
             //Do nothing at all
@@ -33,17 +30,13 @@ class Photos extends Component{
     componentWillUnmount(){
         this.props.dispatch(getTitle(''));
     }
-    componentDidUpdate(prevProps, prevState){
-        const albumId = `id-${this.props.select.albumId}`;
 
-        console.log(this.props.added);
-        //if(this.props.added.albumId.length !== this.state.photos.length) {
-            const json = JSON.stringify({[albumId]: this.props.added[albumId]});
-            localStorage.setItem('photos', json);
-            console.log('componentDidUpdate');
-            console.log(json);
-        //}
+    componentDidUpdate(){
+        const albumId = `id-${this.props.select.albumId}`;
+        const json = JSON.stringify({[albumId]: this.props.added[albumId]});
+        localStorage.setItem('photos', json);
     }
+
     addPhotos = () => {
         const fileElem = document.getElementById("fileInput");
         fileElem.click();
@@ -53,7 +46,6 @@ class Photos extends Component{
         e.preventDefault();
         let reader = new FileReader();
         let file = e.target.files[0];
-        console.log(this.props.added);
 
         let photos;
         
@@ -64,10 +56,8 @@ class Photos extends Component{
                 photos = [{ name: file.name, url: reader.result }];
             }
             this.props.dispatch(addPhotos(albumId, photos));
-            console.log(this.props.added);
         }
         reader.readAsDataURL(file)
-        
     }
 
     openPhoto = (url) => {
@@ -85,11 +75,11 @@ class Photos extends Component{
     
     render() {
         const albumId = `id-${this.props.select.albumId}`;
-        console.log('render');
         let photos = this.props.added[albumId];
-        let $imagePreview = null;
+        let $newImages = null;
+
         if (photos) {
-            $imagePreview = (
+            $newImages = (
                 photos.map( (photo, index) => (
                     <div key={index} className="photo-wrapper" onClick={()=>(this.openPhoto(photo.url))}>
                         <p>{photo.name}</p>
@@ -99,13 +89,14 @@ class Photos extends Component{
                 ))
             );
         }
+
         return (
             <div className="container">
                 <div className="add-photo" onClick={this.addPhotos}>
                     <input type="file" id="fileInput" onChange={(e) => this.handleFile(e, albumId)}/>
                     <p>+</p>
                 </div>
-                {$imagePreview}
+                {$newImages}
                {                   
                 this.props.showData.displayPhotos ? 
                     this.props.photos[albumId].photos.map(photo => (
@@ -122,7 +113,6 @@ class Photos extends Component{
 const mapStateToProps = (state) => ({
     added: state.added,
     select: state.select,
-    getData: state.getData,
     showData: state.showData,
     photos: state.photos
 });

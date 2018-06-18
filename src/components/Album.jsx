@@ -5,11 +5,6 @@ import {savePhotos, clearPhotos } from '../actions/photos';
 import { saveRandPhotos } from '../actions/randPhotos';
 
 class Album extends Component {
-    constructor(props){
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }    
-    
     componentDidMount() {
         if(this.props.id){
             const albumId = this.props.id;
@@ -21,8 +16,6 @@ class Album extends Component {
                 const randomPhoto = photoList[Math.floor(Math.random() * photoList.length)];
                 this.props.dispatch(savePhotos(photoList, albumId));
                 this.props.dispatch(saveRandPhotos(randomPhoto.thumbnailUrl));
-                console.log('get photos---------------------------------------')
-                console.log(this.props.photos);
             });
         }
     }
@@ -42,11 +35,4 @@ class Album extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    showData: state.showData,
-    photos: state.photos,
-    randPhotos: state.randPhotos
-});
-
-
-export default connect(mapStateToProps)(Album);
+export default connect()(Album);

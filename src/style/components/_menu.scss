@@ -2,14 +2,19 @@
     background-color: $light-grey;
     width: 200px;
     height: 100%;
-    border-right: 2px solid $grey;
+    border-right: 1px solid $grey;
     box-sizing: border-box;
     position: absolute;
-    bottom: 0;
+    p{
+        font-size: $m-size;
+        padding: 5px;
+        border-bottom: 1px solid $grey;
+        text-align: center;
+    }
 }
-.menu p{
-    font-size: $m-size;
-    padding: 5px;
-    border-bottom: 2px solid $grey;
-    text-align: center;
+
+@media (max-width: $desktop-breakpoint) {
+    .menu{
+        display: none;
+    }
 }
